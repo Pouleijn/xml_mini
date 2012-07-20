@@ -1,4 +1,5 @@
 require 'stringio'
+require 'xml_mini/node_hash'
 
 module XmlMini_Nokogiri
   extend self
@@ -29,8 +30,8 @@ module XmlMini_Nokogiri
       end
     end
 
-    module Node #:nodoc:
-      CONTENT_ROOT = '__content__'.freeze
+    module Node
+      include NodeHash
 
       # Convert XML document to hash
       #
@@ -40,29 +41,15 @@ module XmlMini_Nokogiri
         node_hash = {}
 
         # Insert node hash into parent hash correctly.
-        case hash[name]
-          when Array then
-            hash[name] << node_hash
-          when Hash then
-            hash[name] = [hash[name], node_hash]
-          when nil then
-            hash[name] = node_hash
-        end
+        insert_node_hash_into_parent(hash, name, node_hash)
 
         # Handle child elements
-        children.each do |c|
-          if c.element?
-            c.to_hash(node_hash)
-          elsif c.text? || c.cdata?
-            node_hash[CONTENT_ROOT] ||= ''
-            node_hash[CONTENT_ROOT] << c.content
-          end
+        children.each do |child|
+          handle_child_element(child, node_hash)
         end
 
         # Remove content node if it is empty and there are child tags
-        if node_hash.length > 1 && node_hash[CONTENT_ROOT].blank?
-          node_hash.delete(CONTENT_ROOT)
-        end
+        remove_blank_content_node node_hash
 
         # Handle attributes
         attribute_nodes.each { |a| node_hash[a.node_name] = a.value }

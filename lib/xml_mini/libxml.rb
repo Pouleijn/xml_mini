@@ -1,3 +1,5 @@
+require 'xml_mini/node_hash'
+
 module XmlMini_LibXML
   extend self
 
@@ -27,8 +29,8 @@ module LibXML #:nodoc:
       end
     end
 
-    module Node #:nodoc:
-      CONTENT_ROOT = '__content__'.freeze
+    module Node
+      include NodeHash
 
       # Convert XML document to hash
       #
@@ -38,26 +40,15 @@ module LibXML #:nodoc:
         node_hash = {}
 
         # Insert node hash into parent hash correctly.
-        case hash[name]
-          when Array then hash[name] << node_hash
-          when Hash  then hash[name] = [hash[name], node_hash]
-          when nil   then hash[name] = node_hash
-        end
+        insert_node_hash_into_parent(hash, name, node_hash)
 
         # Handle child elements
-        each_child do |c|
-          if c.element?
-            c.to_hash(node_hash)
-          elsif c.text? || c.cdata?
-            node_hash[CONTENT_ROOT] ||= ''
-            node_hash[CONTENT_ROOT] << c.content
-          end
+        each_child do |child|
+          handle_child_element(child, node_hash)
         end
 
         # Remove content node if it is blank
-        if node_hash.length > 1 && node_hash[CONTENT_ROOT].blank?
-          node_hash.delete(CONTENT_ROOT)
-        end
+        remove_blank_content_node node_hash
 
         # Handle attributes
         each_attr { |a| node_hash[a.name] = a.value }
