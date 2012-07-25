@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "xml_mini"
   gem.require_paths = ["lib"]
   gem.version       = XmlMini::VERSION
+  
+  gem.add_dependency("builder", ">= 3.0")
+  gem.add_development_dependency("rake", ">= 0.9.2")
 end
