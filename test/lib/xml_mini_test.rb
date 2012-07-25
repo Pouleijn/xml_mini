@@ -1,44 +1,27 @@
 require 'test_helper'
-#require 'active_support/builder'
+
+describe XmlMini do
+  subject { XmlMini }
+  
+  describe "#rename_key" do
+    it { subject.rename_key("my_key").must_equal "my-key" }
+    it { subject.rename_key("my_key", dasherize: true).must_equal "my-key" }
+    it { subject.rename_key("my_key", dasherize: false).must_equal "my_key" }
+    it { subject.rename_key("_id").must_equal "_id" }
+    it { subject.rename_key("_my_key").must_equal "_my-key" }
+    it { subject.rename_key("id_").must_equal "id_" }
+    it { subject.rename_key("my_key_").must_equal "my-key_" }
+    it { subject.rename_key("__id").must_equal "__id" }
+    it { subject.rename_key("id__").must_equal "id__" }
+  end
+  
+  describe "#to_tag" do
+    
+  end
+end
 
 module XmlMiniTest
-  class RenameKeyTest < MiniTest::Unit::TestCase
-    def test_rename_key_dasherizes_by_default
-      assert_equal "my-key", XmlMini.rename_key("my_key")
-    end
-
-    def test_rename_key_does_nothing_with_dasherize_true
-      assert_equal "my-key", XmlMini.rename_key("my_key", :dasherize => true)
-    end
-
-    def test_rename_key_does_nothing_with_dasherize_false
-      assert_equal "my_key", XmlMini.rename_key("my_key", :dasherize => false)
-    end
-
-    def test_rename_key_does_not_dasherize_leading_underscores
-      assert_equal "_id", XmlMini.rename_key("_id")
-    end
-
-    def test_rename_key_with_leading_underscore_dasherizes_interior_underscores
-      assert_equal "_my-key", XmlMini.rename_key("_my_key")
-    end
-
-    def test_rename_key_does_not_dasherize_trailing_underscores
-      assert_equal "id_", XmlMini.rename_key("id_")
-    end
-
-    def test_rename_key_with_trailing_underscore_dasherizes_interior_underscores
-      assert_equal "my-key_", XmlMini.rename_key("my_key_")
-    end
-
-    def test_rename_key_does_not_dasherize_multiple_leading_underscores
-      assert_equal "__id", XmlMini.rename_key("__id")
-    end
-
-    def test_rename_key_does_not_dasherize_multiple_trailing_underscores
-      assert_equal "id__", XmlMini.rename_key("id__")
-    end
-  end
+  
 
   class ToTagTest < MiniTest::Unit::TestCase
     def assert_xml(xml)

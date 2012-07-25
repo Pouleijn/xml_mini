@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module NodeHash
   CONTENT_ROOT = '__content__'.freeze
 

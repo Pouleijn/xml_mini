@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'xml_mini/node_hash'
 
 module XmlMini_LibXML

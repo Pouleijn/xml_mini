@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'base64'
 require "xml_mini/version"
 require "core_ext/array"
@@ -8,7 +10,7 @@ module XmlMini
   extend Forwardable
   extend self
 
-  # This module decorates files deserialized using Hash.from_minixml with
+  # This module decorates files deserialized using Hash.from_xmlmini with
   # the <tt>original_filename</tt> and <tt>content_type</tt> methods.
   module FileLike #:nodoc:
     attr_writer :original_filename, :content_type
@@ -43,7 +45,7 @@ module XmlMini
 
   FORMATTING = {
       "symbol" => Proc.new { |symbol| symbol.to_s },
-      "date" => Proc.new { |date| date.to_s(:db) },
+      "date" => Proc.new { |date| date.to_s },
       "dateTime" => Proc.new { |time| time.xmlschema },
       "binary" => Proc.new { |binary| ::Base64.encode64(binary) },
       "yaml" => Proc.new { |yaml| yaml.to_yaml }
@@ -138,7 +140,6 @@ module XmlMini
     "#{left}#{middle.tr('_ ', '--')}#{right}"
   end
 
-  # TODO: Add support for other encodings
   def _parse_binary(bin, entity) #:nodoc:
     case entity['encoding']
       when 'base64'

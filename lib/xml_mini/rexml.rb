@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'stringio'
 
 module XmlMini_REXML

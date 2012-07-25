@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Array
   # Wraps its argument in an array unless it is already an array (or array-like).
   #

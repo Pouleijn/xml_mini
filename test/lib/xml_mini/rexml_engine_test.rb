@@ -1,28 +1,17 @@
+# encoding: utf-8
+
 require 'test_helper'
+require 'shared/xml_engine'
 require 'xml_mini/rexml'
 
-class REXMLEngineTest < MiniTest::Unit::TestCase
+describe 'XmlMini_REXML' do
 
-  def test_default_is_rexml
-    assert_equal XmlMini_REXML, XmlMini.backend
+  before do
+    @default_backend = XmlMini.backend
+    @backend = 'REXML'
+    @xml_error = nil
+    XmlMini.backend = @backend
   end
 
-  def test_set_rexml_as_backend
-    XmlMini.backend = 'REXML'
-    assert_equal XmlMini_REXML, XmlMini.backend
-  end
-
-  def test_parse_from_io
-    XmlMini.backend = 'REXML'
-    io = StringIO.new(<<-eoxml)
-    <root>
-      good
-      <products>
-        hello everyone
-      </products>
-      morning
-    </root>
-    eoxml
-    XmlMini.parse(io)
-  end
+  it_behaves_like 'An xml engine'
 end
