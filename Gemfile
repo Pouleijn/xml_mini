@@ -17,5 +17,6 @@ group :test do
   gem 'guard'
   gem 'guard-minitest', github: 'mpouleijn/guard-minitest'
   gem 'guard-bundler'
-  gem 'simplecov', :require => false
+  gem 'terminal-notifier-guard'
+  gem 'simplecov', require: false
 end
