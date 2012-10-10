@@ -9,7 +9,7 @@ describe 'XmlMini_LibXMLSAX' do
   before do
     @default_backend = XmlMini.backend
     @backend = 'LibXMLSAX'
-    @xml_error = LibXML::XML::Error
+    @xml_error = RuntimeError
     XmlMini.backend = @backend
   end
 

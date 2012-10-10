@@ -28,7 +28,7 @@ shared_examples_for 'An xml engine' do
       XmlMini.backend.must_equal XmlMini.const_get("XmlMini_#{@backend}")
     end
 
-    it "test_blank_returns_empty_hash" do
+    it "should blank returns empty hash" do
       XmlMini.parse(nil).must_equal({})
       XmlMini.parse('').must_equal({})
     end

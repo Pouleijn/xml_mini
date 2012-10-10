@@ -9,7 +9,7 @@ describe 'XmlMini_REXML' do
   before do
     @default_backend = XmlMini.backend
     @backend = 'REXML'
-    @xml_error = nil
+    @xml_error = RuntimeError
     XmlMini.backend = @backend
   end
 
