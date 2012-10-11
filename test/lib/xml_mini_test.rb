@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe XmlMini do
   subject { XmlMini }
-  
+
   describe "#rename_key" do
     it { subject.rename_key("my_key").must_equal "my-key" }
     it { subject.rename_key("my_key", dasherize: true).must_equal "my-key" }
@@ -14,14 +14,14 @@ describe XmlMini do
     it { subject.rename_key("__id").must_equal "__id" }
     it { subject.rename_key("id__").must_equal "id__" }
   end
-  
+
   describe "#to_tag" do
-    
+
   end
 end
 
 module XmlMiniTest
-  
+
 
   class ToTagTest < MiniTest::Unit::TestCase
     def assert_xml(xml)

@@ -12,7 +12,7 @@ group :development, :test do
   gem 'libxml-ruby'
   gem 'nokogiri'
 end
-  
+
 group :test do
   gem 'guard'
   gem 'guard-minitest', github: 'mpouleijn/guard-minitest'
