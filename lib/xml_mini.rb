@@ -101,7 +101,7 @@ module XmlMini
       if value.arity == 1
         value.call(merged_options)
       else
-        value.call(merged_options, key.to_s.singularize)
+        value.call(merged_options, key.to_s)
       end
     elsif value.respond_to?(:to_xml)
       value.to_xml(merged_options)

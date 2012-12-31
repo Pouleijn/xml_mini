@@ -5,7 +5,7 @@ SimpleCov.start do
   add_filter "/test/"
 
   command_name 'Unit Tests'
-end if ENV["COVERAGE"]
+end
 
 ENV["RAILS_ENV"] = "test"
 
@@ -14,6 +14,7 @@ require 'minitest/autorun'
 require 'minitest-spec'
 require 'xml_mini'
 require 'bigdecimal'
+require 'builder'
 
 class EmptyTrue
   def empty?() true; end
