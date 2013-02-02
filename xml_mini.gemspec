@@ -20,13 +20,5 @@ Gem::Specification.new do |spec|
   spec.version       = XmlMini::VERSION
 
   spec.add_dependency 'builder', '>= 3.0'
-  spec.add_development_dependency 'guard'
-  spec.add_development_dependency 'guard-bundler'
-  spec.add_development_dependency 'libxml-ruby'
-  spec.add_development_dependency 'minitest'
-  spec.add_development_dependency 'minitest-spec'
-  spec.add_development_dependency 'nokogiri'
-  spec.add_development_dependency 'rake', '>= 0.9.2'
-  spec.add_development_dependency 'terminal-notifier-guard'
-  spec.add_development_dependency 'yard'
+  spec.add_development_dependency 'bundler', '~> 1.0'
 end
