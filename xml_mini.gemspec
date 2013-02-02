@@ -1,5 +1,7 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path('../lib/xml_mini/version', __FILE__)
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'xml_mini/version'
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Michel Pouleijn", "Erik Michaels-Ober"]
