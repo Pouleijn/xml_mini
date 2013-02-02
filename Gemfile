@@ -1,7 +1,6 @@
 source :rubygems
 
 gem 'rake', '>= 0.9.2'
-gem 'yard'
 
 group :development do
   gem 'guard'
