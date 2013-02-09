@@ -1,4 +1,5 @@
-[![Build Status](https://secure.travis-ci.org/Pouleijn/xml_mini.png?branch=master)](http://travis-ci.org/Pouleijn/xml_mini) | [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/Pouleijn/xml_mini)
+[![Build Status](https://secure.travis-ci.org/Pouleijn/xml_mini.png?branch=master)](http://travis-ci.org/Pouleijn/xml_mini)
+[![Code Climate](https://codeclimate.com/github/Pouleijn/xml_mini.png)](https://codeclimate.com/github/Pouleijn/xml_mini)
 
 # XmlMini
 
