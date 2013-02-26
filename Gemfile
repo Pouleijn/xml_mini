@@ -10,12 +10,13 @@ group :development do
 end
 
 group :test do
+  gem 'coveralls', :require => false
   gem 'libxml-ruby'
   gem 'minitest'
   gem 'minitest-spec'
   gem 'nokogiri'
   gem 'rb-fsevent', '~> 0.9.1'
-  gem 'simplecov', require: false
+  gem 'simplecov', :require => false
 end
 
 gemspec

@@ -1,20 +1,20 @@
 # encoding: utf-8
-
-require 'simplecov'
-SimpleCov.start do
-  add_filter "/test/"
-
-  command_name 'Unit Tests'
-end
-
 ENV["RAILS_ENV"] = "test"
 
-gem 'minitest'
-require 'minitest/autorun'
-require 'minitest-spec'
+require 'simplecov'
+require 'coveralls'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  SimpleCov::Formatter::HTMLFormatter,
+  Coveralls::SimpleCov::Formatter
+]
+SimpleCov.start
+
 require 'xml_mini'
 require 'bigdecimal'
 require 'builder'
+require 'minitest/autorun'
+require 'minitest-spec'
 
 class EmptyTrue
   def empty?() true; end
